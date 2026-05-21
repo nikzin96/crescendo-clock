@@ -74,7 +74,7 @@ See the [detailed description](hardware/README.md) in the hardware folder for mo
 ## Compiling and customizing the software
 Basic knowledge about platformio, ESP-IDF development and ESP32 boards is required. This project has been tested only under a Linux environment. In order to compile this project you will need:
 - Your populated PCB board with the ESP32C3 board connected to the PC via USB
-- Visual Studio Code with platformio extension installed and Espressif platform 6.1 installed. Platform updates may cause the code to break, this happened during development several times. If you want to avoid this, set the line `platform = espressif32@=6.1.0` in the file [platformio.ini](platformio.ini)
+- Visual Studio Code with platformio extension installed. The versions for the espressif32 platform and the LovyanGFX library in the file [platformio.ini](platformio.ini) have been set to a fixed value to avoid code breaks (which has happened several times during development).
 
 Just build and upload the code! If you upload to code to the board with no hardware connected to it (display, encoder, etc.) you should at least be able to see some basic debug messages via Serial Monitor related to the failed WiFi connection.
 
