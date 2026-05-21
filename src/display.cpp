@@ -41,7 +41,7 @@ void Display::updateContent(display_element_t element, void *value, display_acti
     switch (element) {
         case D_E_TIME:
             char time_buf[8];
-            sprintf(time_buf, "%02d:%02d", static_cast<clock_time_t *>(value)->hour, static_cast<clock_time_t *>(value)->minute);
+            snprintf(time_buf, sizeof(time_buf), "%02d:%02d", static_cast<clock_time_t *>(value)->hour, static_cast<clock_time_t *>(value)->minute);
             lcd.setTextDatum(top_center);
 
             switch (action) {
@@ -56,16 +56,16 @@ void Display::updateContent(display_element_t element, void *value, display_acti
 
         case D_E_ALARM_TIME:
             char alarm_buf[8];
-            sprintf(alarm_buf, "%02d:%02d", static_cast<clock_time_t *>(value)->hour, static_cast<clock_time_t *>(value)->minute);
+            snprintf(alarm_buf, sizeof(alarm_buf), "%02d:%02d", static_cast<clock_time_t *>(value)->hour, static_cast<clock_time_t *>(value)->minute);
             char alarm_symbol_buf[2];
-            sprintf(alarm_symbol_buf, DISPLAY_SYMBOL_ALARM_ON);
+            snprintf(alarm_symbol_buf, sizeof(alarm_symbol_buf), DISPLAY_SYMBOL_ALARM_ON);
             lcd.setTextColor(TFT_WHITE, TFT_BLACK);  // Normal case
 			lcd.setTextDatum(middle_center);
             switch (action) {
                 case D_A_OFF:
                     lcd.setTextColor(TFT_DARKGRAY, TFT_BLACK);
-                    sprintf(alarm_symbol_buf, DISPLAY_SYMBOL_ALARM_OFF);
-                    sprintf(alarm_buf, "     ");
+                    snprintf(alarm_symbol_buf, sizeof(alarm_symbol_buf), DISPLAY_SYMBOL_ALARM_OFF);
+                    snprintf(alarm_buf, sizeof(alarm_buf), "     ");
                     break;
                 case D_A_HIDE_HOURS:
                     alarm_buf[0] = alarm_buf[1] = ' ';
@@ -82,9 +82,9 @@ void Display::updateContent(display_element_t element, void *value, display_acti
 
         case D_E_BED_TIME:
             char bed_time_buf[8];
-            sprintf(bed_time_buf, "%01d:%02d", static_cast<clock_time_t *>(value)->hour, static_cast<clock_time_t *>(value)->minute);
+            snprintf(bed_time_buf, sizeof(bed_time_buf), "%01d:%02d", static_cast<clock_time_t *>(value)->hour, static_cast<clock_time_t *>(value)->minute);
             char bed_time_symbol_buf[3];
-            sprintf(bed_time_symbol_buf, DISPLAY_SYMBOL_BED);
+            snprintf(bed_time_symbol_buf, sizeof(bed_time_symbol_buf), DISPLAY_SYMBOL_BED);
             lcd.setTextColor(TFT_LIGHTGRAY, TFT_BLACK);  // Normal case
 			lcd.setTextDatum(middle_center);
             // We show the remaining bed time only when less than 9 hours
@@ -93,8 +93,8 @@ void Display::updateContent(display_element_t element, void *value, display_acti
 
             switch (action) {
                 case D_A_OFF:
-                    sprintf(bed_time_buf, "    ");
-                    sprintf(bed_time_symbol_buf, "  ");
+                    snprintf(bed_time_buf, sizeof(bed_time_buf), "    ");
+                    snprintf(bed_time_symbol_buf, sizeof(bed_time_symbol_buf), "  ");
                     break;
                 default:
                     break;
@@ -109,7 +109,7 @@ void Display::updateContent(display_element_t element, void *value, display_acti
             lcd.setTextColor(TFT_ORANGE, TFT_BLACK);
             switch (action) {
                 case D_A_OFF:
-                    sprintf(snooze_buf, "     ");
+                    snprintf(snooze_buf, sizeof(snooze_buf), "     ");
                     lcd.drawString("  ", 175, 205, &Antonio_Regular26pt7b);
                     break;
                 case D_A_ON:
@@ -119,7 +119,7 @@ void Display::updateContent(display_element_t element, void *value, display_acti
                     remaining_seconds = *(static_cast<uint16_t *>(value));
                     minutes = remaining_seconds / 60;
                     seconds = remaining_seconds % 60;
-                    sprintf(snooze_buf, "%01d:%02d", minutes, seconds);
+                    snprintf(snooze_buf, sizeof(snooze_buf), "%01d:%02d", minutes, seconds);
                     lcd.drawString(DISPLAY_SYMBOL_SNOOZE, 175, 205, &Antonio_Regular26pt7b);
                     break;
                 default:
