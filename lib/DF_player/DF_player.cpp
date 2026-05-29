@@ -24,6 +24,10 @@ bool DFPlayer::init(uart_port_t uart_port_number, int pin_tx, int pin_rx) {
         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
         .rx_flow_ctrl_thresh = 0,  // Some dummy value to avoid compiler warning, not needed
         .source_clk = UART_SCLK_APB,
+        .flags = {
+            .allow_pd = 0,
+            .backup_before_sleep = 0,
+        },        
     };
     uart_port_nr = uart_port_number;
 
