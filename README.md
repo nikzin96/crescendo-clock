@@ -63,11 +63,11 @@ The crescendo clock does not subscribe to any MQTT message. Instead, it sends tw
 ## Main components
 These are the main electrical components used in this project:
 - [Seeed Studio XIAO ESP32C3 board](https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/)
-- [Rotary encoder with board](https://www.ebay.de/itm/173657244984)
+- [Rotary encoder with board](https://www.ebay.de/itm/173657244984) OR [KY-040 rotary encoder](https://eckstein-shop.de/QITAPotentiometerDrehreglerKY-040RotaryEncoderModulforArduino)
 - [2.4 inch display with ILI9341 driver](https://www.waveshare.com/2.4inch-lcd-module.htm)
 - [DFRobot's DFPlayer Mini](https://www.dfrobot.com/product-1121.html)
 - [Light sensor](https://www.adafruit.com/product/2748)
-- [Mini-speaker](https://www.ebay.de/itm/313914312809)
+- [Mini-speaker](https://www.ebay.de/itm/313914312809) OR [Alternative speaker](https://www.roboter-bausatz.de/p/mini-lautsprecher-40x20mm-8-ohm-2w?srsltid=AfmBOoopKb5mx4_vk1D1lSvQcwHRAmrfkpGHSORVhfh3L5o95jugrUWY)
 
 See the [detailed description](hardware/README.md) in the hardware folder for more information about schematics, PCB, 3D printed case, detailed assembly instructions and other design considerations.
 

@@ -72,7 +72,7 @@ The big connector on the rear side of the display is not needed and needs to be 
 <img src="pictures/board_sanity_check.jpg" width="40%">
 
 ## 3D printed case
-STL files for the [case](3D/case.stl), the [rear cover](3D/rear_cover.stl) and the [knurled rotary botton](3D/knurled_button.stl) are available:
+STL files for the [case](3D/case.stl), the [rear cover](3D/rear_cover.stl) and the [knurled rotary botton](3D/knurled_button.stl) are available. If you have used the [KY-040 rotary encoder](https://eckstein-shop.de/QITAPotentiometerDrehreglerKY-040RotaryEncoderModulforArduino) print the [knurled rotary botton new](3D/knurled_button_new.step) and if you got the [alternative speaker](https://www.roboter-bausatz.de/p/mini-lautsprecher-40x20mm-8-ohm-2w?srsltid=AfmBOoopKb5mx4_vk1D1lSvQcwHRAmrfkpGHSORVhfh3L5o95jugrUWY) print the [rear cover new](3D/rear_cover_new.step):
 <p float="left">
     <img src="3D/case.png" width="30%">
     <img src="3D/rear_cover.png" width="25%">
@@ -99,9 +99,9 @@ You can find the original Fusion 360 files in the [3D folder](3D) as well.
 
 <img src="pictures/rotary_encoder_mounting.jpg" width="40%">
 
-5. Attach the speaker on the rear cover. Pay attention to the orientation, since the rear cover has an upper and a lower part and you want the cables coming out of the lower part. It should be a tight fit into the pins, otherwise use some strong glue to make sure it stays attached
+5. Attach the speaker on the rear cover. Pay attention to the orientation, since the rear cover has an upper and a lower part and you want the cables coming out of the lower part. It should be a tight fit into the pins, otherwise use some strong glue to make sure it stays attached. In case of the [alternative speaker](https://www.roboter-bausatz.de/p/mini-lautsprecher-40x20mm-8-ohm-2w?srsltid=AfmBOoopKb5mx4_vk1D1lSvQcwHRAmrfkpGHSORVhfh3L5o95jugrUWY) use short M2 screws and nuts to secure it to the rear cover (see right picure).
 
-<img src="pictures/speakers_on_cover.jpg" width="40%">
+<img src="pictures/speakers_on_cover.jpg" width="40%"> <img src="pictures/rear_alternative_speaker.jpg" width="47.7%">
 
 6. Connect everything together sure everything is connected  
 
