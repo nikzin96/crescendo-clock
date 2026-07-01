@@ -46,7 +46,8 @@ bool DFPlayer::init(uart_port_t uart_port_number, int pin_tx, int pin_rx) {
 void DFPlayer::receiveData(uint16_t timeout_ms) {
     TickType_t ticks_to_wait;
     if (timeout_ms == 0)
-        ticks_to_wait = portMAX_DELAY;
+        // Use 500ms timeout instead of portMAX_DELAY to prevent indefinite blocking
+        ticks_to_wait = 500 / portTICK_PERIOD_MS;
     else
         ticks_to_wait = timeout_ms / portTICK_PERIOD_MS;
 

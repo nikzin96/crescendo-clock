@@ -296,15 +296,17 @@ void Display::setMaxBrightness(bool request_max_brightness) {
     max_brightness_requested = request_max_brightness;
     increased_brightness_requested = false;
     // This is to trigger an immediate change of brightness in monitorBrightnessTask
+    // Use 100ms timeout instead of portMAX_DELAY to prevent deadlock
     bool queue_event = true;
-    xQueueSend(queue, &queue_event, portMAX_DELAY);
+    xQueueSend(queue, &queue_event, 100 / portTICK_PERIOD_MS);
 }
 
 void Display::setIncreasedBrightness(bool request_inc_brightness) {
      // This is to trigger an immediate change of brightness in monitorBrightnessTask
     if (increased_brightness_requested != request_inc_brightness) {
         bool queue_event = true;
-        xQueueSend(queue, &queue_event, portMAX_DELAY);
+        // Use 100ms timeout instead of portMAX_DELAY to prevent deadlock
+        xQueueSend(queue, &queue_event, 100 / portTICK_PERIOD_MS);
     }
     increased_brightness_requested = request_inc_brightness;
     max_brightness_requested = false;

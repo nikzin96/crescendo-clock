@@ -58,11 +58,12 @@ void WifiTime::monitorWifiTask(void *pvParameter) {
 void WifiTime::monitorWifi(void) {
     // Waiting until either the connection is established (WIFI_CONNECTED_BIT) or connection failed for the maximum
     // number of re-tries (WIFI_FAIL_BIT). The bits are set by event_handler() (see above)
+    // Use 5-second timeout instead of portMAX_DELAY to prevent the task from blocking forever if events don't fire
     EventBits_t bits = xEventGroupWaitBits(wifi_event_group,
                                            WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
                                            pdFALSE,
                                            pdFALSE,
-                                           portMAX_DELAY);
+                                           5000 / portTICK_PERIOD_MS);
 
     // xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually happened.
     if (bits & WIFI_CONNECTED_BIT) {
@@ -141,7 +142,11 @@ bool WifiTime::isWPSActive(void) {
 
 void WifiTime::initSNTP(void) {
     esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
-    esp_sntp_setservername(0, "pool.ntp.org");
+    // Configure multiple NTP servers for better reliability across different networks
+    esp_sntp_setservername(0, "pool.ntp.org");           // Global NTP pool
+    esp_sntp_setservername(1, "time.nist.gov");          // US NIST (often more reliable)
+    esp_sntp_setservername(2, "time.cloudflare.com");    // Cloudflare (very stable)
+    esp_sntp_setservername(3, "time.google.com");        // Google (highly available)
     sntp_set_sync_mode(SNTP_SYNC_MODE_SMOOTH);
     esp_sntp_init();
     // Timezone Berlin: https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv

@@ -42,7 +42,8 @@ void RotaryEncoder::sendButtonEvent(rotary_encoder_event_type_t event_type) {
             .position = position,
             .direction = direction,
         };
-    xQueueSend(queue, &event, portMAX_DELAY);
+    // Use 100ms timeout instead of portMAX_DELAY to prevent deadlock if queue is full
+    xQueueSend(queue, &event, 100 / portTICK_PERIOD_MS);
 }
 
 void RotaryEncoder::buttonTask(void *pvParameter) {
@@ -145,7 +146,7 @@ QueueHandle_t RotaryEncoder::init(gpio_num_t A, gpio_num_t B, gpio_num_t button,
     gpio_install_isr_service(0);
     gpio_set_pull_mode(pin_a, GPIO_PULLUP_ONLY);
     gpio_set_pull_mode(pin_b, GPIO_PULLUP_ONLY);
-    gpio_set_pull_mode(pin_button, GPIO_PULLUP_PULLDOWN);
+    gpio_set_pull_mode(pin_button, GPIO_PULLUP_ONLY);
     gpio_set_direction(pin_a, GPIO_MODE_INPUT);
     gpio_set_direction(pin_b, GPIO_MODE_INPUT);
     gpio_set_direction(pin_button, GPIO_MODE_INPUT);
